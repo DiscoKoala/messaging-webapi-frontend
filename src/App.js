@@ -1,25 +1,48 @@
-import logo from './logo.svg';
 import './App.css';
+import Sidebar from './components/Sidebar.js';
+import Chat from './components/Chat.js';
+import React, { useEffect, useState } from 'react';
+import axios from './components/axios.js';
+import Login from './components/Login.js';
+import { useStateValue } from './components/StateProvider.js';
+const Pusher = require('pusher-js');
 
-function App() {
+function App () {
+  const [messages, setMessages] = useState([]);
+  const [{ user }, dispatch] = useStateValue();
+  // const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    axios.get('/messages/sync').then(res => {
+      setMessages(res.data);
+    });
+  }, []);
+  useEffect(() => {
+    const pusher = new Pusher('c7f9df435c12676138ae', {
+      cluster: 'us2'
+    });
+    const channel = pusher.subscribe('messages');
+    channel.bind('inserted', (data) => {
+      setMessages([...messages, data]);
+    });
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
+    };
+  }, [messages]);
+  console.log(messages);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!user
+        ? <Login />
+        : (
+      <div className="App-body">
+        <Sidebar messages={messages}/>
+        <Chat messages={messages}/>
+      </div>
+          )}
     </div>
   );
 }
-
 export default App;
