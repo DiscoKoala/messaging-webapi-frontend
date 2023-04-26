@@ -1,7 +1,8 @@
 
 import React, { useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
-import { IconButton } from '@mui/material';
+// import { IconButton } from '@mui/material';
+import Button from 'react-bootstrap/Button'
 import { AttachFile, MoreVert, SearchOutlined, InsertEmoticon } from '@mui/icons-material';
 import MicIcon from '@mui/icons-material/Mic';
 import axios from './axios';
@@ -35,15 +36,15 @@ const Chat = ({ messages }) => {
                     <p>Last seen at {' '}{messages[messages.length - 1]?.timestamp}</p>
                 </div>
                 <div className="chat_headerRight">
-                    <IconButton>
+                    <Button>
                         <SearchOutlined/>
-                    </IconButton>
-                    <IconButton>
+                    </Button>
+                    <Button>
                         <AttachFile/>
-                    </IconButton>
-                    <IconButton>
+                    </Button>
+                    <Button>
                         <MoreVert/>
-                    </IconButton>
+                    </Button>
                 </div>
             </div>
             <div className="chat_body">
