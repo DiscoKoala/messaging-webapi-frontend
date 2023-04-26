@@ -1,6 +1,8 @@
 
 import React, { useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
+import Form from 'react-bootstrap/Form';
+import Stack from 'react-bootstrap/Stack';
 // import { IconButton } from '@mui/material';
 import Button from 'react-bootstrap/Button'
 import { AttachFile, MoreVert, SearchOutlined, InsertEmoticon } from '@mui/icons-material';
@@ -60,16 +62,16 @@ const Chat = ({ messages }) => {
             </div>
             <div className="chat_footer">
                 <InsertEmoticon/>
-                <form>
-                    <input
-                        value = {input}
-                        onChange={event => setInput(event.target.value)}
-                        placeholder="Type a message"
-                        type="text"
-                    />
-                    <button onClick={sendMessage} type="submit">Send a message</button>
-                </form>
-                <MicIcon/>
+                <Stack direction="horizontal" gap={3}></Stack>
+                    <MicIcon/> 
+                    <Form.Control className="me-auto" placeholder="Type a message" />
+                        <input
+                            value = {input}
+                            onChange={event => setInput(event.target.value)}
+                            type="text"
+                        />
+                        <Button onClick={sendMessage} type="submit">Send a message</Button>
+                <Stack/>
             </div>
         </div>
   );
