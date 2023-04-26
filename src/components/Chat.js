@@ -17,7 +17,7 @@ const Chat = ({ messages }) => {
   const [{ user }, dispatch] = useStateValue();
 
   const sendMessage = async (event) => {
-    event.preventDefault();
+    event.preventDefault()
     await axios.post('/messages/new', {
       message: input,
       name: user.displayName,
