@@ -11,14 +11,16 @@ if (process.env.NODE_ENV === 'development') {
     middlewares.push(logger);
 }
 
+const reducer = combineReducers({
+    msg: msgReducer,
+    user: userReducer
+})
+
 const store = configureStore(
-    combineReducers( {
-        msg: msgReducer,
-        user: userReducer
-    }),
+    reducer,
     applyMiddleware(
         ...middlewares
-    )
+    ) 
 );
 
 export default store;
