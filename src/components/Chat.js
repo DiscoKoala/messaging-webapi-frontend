@@ -1,12 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Form from 'react-bootstrap/Form';
+import { Form, Button }from 'react-bootstrap';
 import Stack from 'react-bootstrap/Stack';
-// import { IconButton } from '@mui/material';
-import Button from 'react-bootstrap/Button'
-import { AttachFile, MoreVert, SearchOutlined, InsertEmoticon } from '@mui/icons-material';
-import MicIcon from '@mui/icons-material/Mic';
 import axios from './axios';
 import './Chat.css';
 import { useStateValue } from './StateProvider.js';
@@ -32,20 +27,20 @@ const Chat = ({ messages }) => {
   return (
         <div className="chat">
             <div className="chat_header">
-                <Avatar src={`https://avatars.dicebear.com/api/human/b${seed}.svg`} />
+                <img src={`https://avatars.dicebear.com/api/human/b${seed}.svg`} class="rounded-circle" alt="Avatar" />
                 <div className="chat_headerInfo">
                     <h3>Dev Help</h3>
                     <p>Last seen at {' '}{messages[messages.length - 1]?.timestamp}</p>
                 </div>
                 <div className="chat_headerRight">
                     <Button>
-                        <SearchOutlined/>
+                        <i class="bi bi-search"></i>
                     </Button>
                     <Button>
-                        <AttachFile/>
+                        <i class="bi bi-paperclip"></i>
                     </Button>
                     <Button>
-                        <MoreVert/>
+                        <i class="bi bi-three-dots-vertical"></i>
                     </Button>
                 </div>
             </div>
@@ -61,9 +56,9 @@ const Chat = ({ messages }) => {
                 ))}
             </div>
             <div className="chat_footer">
-                <InsertEmoticon/>
+                <i class="bi bi-emoji-laughing"></i>
                 <Stack direction="horizontal" gap={3}></Stack>
-                    <MicIcon/> 
+                    <i class="bi bi-mic"></i>
                     <Form.Control className="me-auto" placeholder="Type a message" />
                         <input
                             value = {input}

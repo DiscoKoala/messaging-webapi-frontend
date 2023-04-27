@@ -3,7 +3,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button'
 import './Login.css';
 import { auth, provider } from '../firebase';
-import { actionTypes } from '../reducer';
+import { actionTypes } from '../reducers/userReducer';
 import { useStateValue } from './StateProvider';
 
 const Login = () => {

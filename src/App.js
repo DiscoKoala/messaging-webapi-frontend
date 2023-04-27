@@ -1,11 +1,13 @@
 import './App.css';
 import Sidebar from './components/Sidebar.js';
 import Chat from './components/Chat.js';
+import store from './stores/store'
 import React, { useEffect, useState } from 'react';
 import axios from './components/axios.js';
 import Login from './components/Login.js';
+import { Provider } from 'react-redux';
 import { useStateValue } from './components/StateProvider.js';
-const Pusher = require('pusher-js');
+import Pusher from 'pusher-js'
 
 function App () {
   const [messages, setMessages] = useState([]);
@@ -34,6 +36,7 @@ function App () {
 
   return (
     <div className="App">
+      <Provider store={store}>
       {!user
         ? <Login />
         : (
@@ -42,6 +45,7 @@ function App () {
         <Chat messages={messages}/>
       </div>
           )}
+      </Provider>
     </div>
   );
 }

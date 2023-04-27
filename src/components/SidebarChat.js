@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from 'react';
-import Avatar from '@mui/material/Avatar';
 import './SidebarChat.css';
 
 const SidebarChat = ({ messages }) => {
@@ -10,7 +9,7 @@ const SidebarChat = ({ messages }) => {
   }, []);
   return (
         <div className="sidebarChat">
-            <Avatar src={`https://avatars.dicebear.com/api/human/b${seed}.svg`} />
+            <img src={`https://avatars.dicebear.com/api/human/b${seed}.svg`} class="rounded-circle" alt="Avatar" />
             <div className="sidebarChat__info">
                 <h2>Dev Help</h2>
                 <p>{messages[messages.length - 1]?.timestamp}</p>
